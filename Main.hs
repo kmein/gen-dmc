@@ -33,11 +33,11 @@ sticker :: StickerConfig -> Diagram B
 sticker StickerConfig{..} = 
   let 
     bar = rect 2.5 0.2 # fc barColour
-    margin x = padX 1.05 . padY 1.05
+    margin x = padX x . padY x
     frameOffset
       | length textLines == 2 = 0.8
       | otherwise = 0.95
-  in bg backgroundColour . margin 0.07 . center $
+  in bg backgroundColour . margin 1.05 . center $
     vsep 0.5 
       [ bar 
       , vsep 0.8 (map text textLines) # fc textColour # font fontName # ultraBold # padY frameOffset # scaleX 1.35 
