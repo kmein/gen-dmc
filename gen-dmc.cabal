@@ -1,0 +1,16 @@
+cabal-version:       2.4
+name:                gen-dmc
+version:             0.1.0
+synopsis:            RUN DMC style logo generator
+homepage:            https://github.com/kmein/gen-dmc
+license:             MIT
+license-file:        LICENSE
+author:              Kierán Meinhardt
+maintainer:          kieran.meinhardt@gmail.com
+category:            Graphics
+
+executable gen-dmc
+  main-is:             Main.hs
+  other-extensions:    ApplicativeDo, FlexibleContexts, NoMonomorphismRestriction, RecordWildCards, TypeFamilies
+  build-depends:       base ^>=4.12.0.0, split ^>=0.2.3.3, diagrams-lib ^>=1.4.2.3, diagrams-svg ^>=1.4.2, optparse-applicative ^>=0.14.3.0
+  default-language:    Haskell2010
