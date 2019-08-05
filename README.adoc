@@ -1,0 +1,11 @@
+image::logo.png[gen-dmc]
+
+= Installation
+
+`cabal install`
+
+= Usage Examples
+
+1. `gendmc RUNDMC -o rundmc.svg -w 500`
+2. `gendmc NIXPKG --fg 000000 --bg ffffff --frame 0000ff -o nixpkg.svg -w 500`
+3. `gendmc RUNBSD --frame ff0000 -o runbsd.svg -w 100`
