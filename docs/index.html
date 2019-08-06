@@ -1,0 +1,209 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.css"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GEN DMC</title>
+    <style>
+      .svg-container {
+        margin: 0 auto;
+        max-width: 40rem;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+      }
+
+      body {
+        max-width: 60rem;
+        margin: 1rem auto;
+      }
+
+      body > footer {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>GEN DMC</h1>
+
+      <div class="row">
+        <div class="column">
+          <label for="topText">TOP TXT</label>
+          <input type="text" id="topText" v-model="text1" />
+        </div>
+        <div class="column">
+          <label for="bottomText">BTM TXT</label>
+          <input type="text" id="bottomText" v-model="text2" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <label for="backgroundColour">BCK CLR</label>
+          <input type="text" id="backgroundColour" v-model="backgroundColour" />
+        </div>
+        <div class="column">
+          <label for="textColour">TXT CLR</label>
+          <input type="text" id="textColour" v-model="textColour" />
+        </div>
+        <div class="column">
+          <label for="frameColour">FRM CLR</label>
+          <input type="text" id="frameColour" v-model="frameColour" />
+        </div>
+      </div>
+
+      <div style="display:none">
+        <svg
+          id="rundmcsvg"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke-opacity="1"
+          viewBox="0 0 500 408"
+          font-size="1"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          stroke="backgroundColour"
+          version="1.1"
+        >
+          <defs></defs>
+          <g
+            stroke-linejoin="miter"
+            stroke-opacity="1.0"
+            fill-opacity="1.0"
+            stroke="rgb(0,0,0)"
+            stroke-width="0.0"
+            :fill="backgroundColour"
+            stroke-linecap="butt"
+            stroke-miterlimit="10.0"
+          >
+            <path
+              d="M 500.0000,408.0000 l -0.0000,-408.0000 h -500.0000 l -0.0000,408.0000 Z"
+            />
+          </g>
+          <g
+            stroke-linejoin="miter"
+            stroke-opacity="1.0"
+            fill-opacity="1.0"
+            :stroke="backgroundColour"
+            stroke-width="1.8066543665017947"
+            :fill="frameColour"
+            stroke-linecap="butt"
+            stroke-miterlimit="10.0"
+          >
+            <path
+              d="M 488.0952,398.2857 l -0.0000,-38.0952 h -476.1905 l -0.0000,38.0952 Z"
+            />
+          </g>
+          <g
+            stroke-linejoin="miter"
+            stroke-opacity="1.0"
+            fill-opacity="1.0"
+            font-size="221.3133340689952px"
+            :stroke="backgroundColour"
+            stroke-width="1.8066543665017947"
+            :fill="textColour"
+            stroke-linecap="butt"
+            font-family="Monospace"
+            stroke-miterlimit="10.0"
+            font-weight="800"
+          >
+            <text
+              dominant-baseline="middle"
+              transform="matrix(1.1619,0.0000,0.0000,0.8607,250.0000,295.4286)"
+              stroke="none"
+              text-anchor="middle"
+            >
+              {{text2}}
+            </text>
+          </g>
+          <g
+            stroke-linejoin="miter"
+            stroke-opacity="1.0"
+            fill-opacity="1.0"
+            font-size="221.3133340689952px"
+            :stroke="backgroundColour"
+            stroke-width="1.8066543665017947"
+            :fill="textColour"
+            stroke-linecap="butt"
+            font-family="Monospace"
+            stroke-miterlimit="10.0"
+            font-weight="800"
+          >
+            <text
+              dominant-baseline="middle"
+              transform="matrix(1.1619,0.0000,0.0000,0.8607,250.0000,143.0476)"
+              stroke="none"
+              text-anchor="middle"
+            >
+              {{text1}}
+            </text>
+          </g>
+          <g
+            stroke-linejoin="miter"
+            stroke-opacity="1.0"
+            fill-opacity="1.0"
+            :stroke="backgroundColour"
+            stroke-width="1.8066543665017947"
+            :fill="frameColour"
+            stroke-linecap="butt"
+            stroke-miterlimit="10.0"
+          >
+            <path
+              d="M 488.0952,47.8095 l -0.0000,-38.0952 h -476.1905 l -0.0000,38.0952 Z"
+            />
+          </g>
+        </svg>
+      </div>
+
+      <div class="svg-container">
+        <img :src="dataUrl" />
+      </div>
+    </div>
+    <footer>
+      <hr />
+      <p>&copy; <a href="https://github.com/kmein">Kierán Meinhardt</a> 2019</p>
+    </footer>
+  </body>
+  <script>
+    let vue = new Vue({
+      el: "#app",
+      data: {
+        text1: "GEN",
+        text2: "DMC",
+        frameColour: "#be0a26",
+        backgroundColour: "#000000",
+        textColour: "#ffffff"
+      },
+      computed: {
+        dataUrl() {
+          const depends = [
+            this.frameColour,
+            this.backgroundColour,
+            this.textColour,
+            this.text1,
+            this.text2
+          ];
+
+          const svg = document.querySelector("#rundmcsvg");
+
+          return `data:image/svg+xml,${encodeURIComponent(
+            new XMLSerializer().serializeToString(svg)
+          )}`;
+        }
+      }
+    });
+  </script>
+</html>
