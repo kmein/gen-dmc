@@ -1,0 +1,23 @@
+body {
+  margin: auto 1rem;
+}
+
+#app {
+  max-width: 60rem;
+  margin: 1.5rem auto;
+}
+
+section#download {
+  text-align: center;
+}
+
+section#svg-display {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+footer {
+  text-align: center;
+}
