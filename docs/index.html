@@ -2,6 +2,8 @@
   <head>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
     <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvg/1.4/rgbcolor.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvg/dist/browser/canvg.min.js"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
@@ -20,19 +22,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>GEN DMC</title>
     <style>
-      .svg-container {
-        margin: 0 auto;
-        max-width: 40rem;
-        padding-top: 1rem;
-        padding-bottom: 2rem;
-      }
-
       body {
         max-width: 60rem;
-        margin: 1rem auto;
+        margin: 1.5rem auto;
       }
 
-      body > footer {
+      section#download {
+        text-align: center;
+      }
+
+      section#svg-display {
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+        max-width: 40rem;
+        margin: 0 auto;
+      }
+
+      footer {
         text-align: center;
       }
     </style>
@@ -67,15 +73,13 @@
         </div>
       </div>
 
-      <div style="display:none">
+      <section id="svg-display">
         <svg
-          id="rundmcsvg"
+          id="runDmcSvg"
           xmlns="http://www.w3.org/2000/svg"
           stroke-opacity="1"
           viewBox="0 0 500 408"
           font-size="1"
-          width="500"
-          height="408"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           stroke="backgroundColour"
           version="1.1"
@@ -168,16 +172,27 @@
             />
           </g>
         </svg>
-      </div>
+      </section>
 
-      <div class="svg-container">
-        <img :src="dataUrl" />
-      </div>
+      <section id="download">
+        <a class="button" @click="downloadSVG">Download</a>
+        <a id="svgDownload" style="display:none"></a>
+      </section>
+
+      <canvas
+        style="display:none"
+        width="1500"
+        height="1224"
+        id="tmpCanvas"
+      ></canvas>
+
+      <footer>
+        <hr />
+        <p>
+          &copy; <a href="https://github.com/kmein">Kierán Meinhardt</a> 2019
+        </p>
+      </footer>
     </div>
-    <footer>
-      <hr />
-      <p>&copy; <a href="https://github.com/kmein">Kierán Meinhardt</a> 2019</p>
-    </footer>
   </body>
   <script>
     let vue = new Vue({
@@ -189,6 +204,21 @@
         backgroundColour: "#000000",
         textColour: "#ffffff"
       },
+      methods: {
+        downloadSVG() {
+          const canvas = document.getElementById("tmpCanvas");
+
+          canvg(canvas, document.getElementById("runDmcSvg").outerHTML);
+
+          const img = canvas.toDataURL("image/jpeg");
+
+          const downloader = document.getElementById("svgDownload");
+          downloader.download = `${this.text1}-${this.text2}.jpg`;
+          downloader.href = img;
+          downloader.click();
+        }
+      }
+      /*
       computed: {
         dataUrl() {
           const depends = [
@@ -206,6 +236,7 @@
           )}`;
         }
       }
+      */
     });
   </script>
 </html>
