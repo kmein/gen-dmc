@@ -162,17 +162,28 @@
         </svg>
       </section>
 
-      <section id="download">
-        <a class="button" @click="downloadSVG">Download</a>
-        <a id="svgDownload" style="display:none"></a>
-      </section>
-
       <canvas
         style="display:none"
-        width="1500"
-        height="1224"
+        :width="downloadWidth"
+        :height="downloadHeight"
         id="tmpCanvas"
       ></canvas>
+
+      <section id="download">
+        <input
+          type="range"
+          min="500"
+          max="3000"
+          value="1500"
+          v-model="downloadWidth"
+        />
+        <br />
+
+        <a class="button" @click="downloadSVG"
+          >Download ({{downloadWidth}} &times; {{downloadHeight}})</a
+        >
+        <a id="svgDownload" style="display:none"></a>
+      </section>
 
       <footer>
         <hr />
@@ -190,7 +201,13 @@
         text2: "DMC",
         frameColour: "#be0a26",
         backgroundColour: "#000000",
-        textColour: "#ffffff"
+        textColour: "#ffffff",
+        downloadWidth: 1500
+      },
+      computed: {
+        downloadHeight() {
+          return ~~(this.downloadWidth * (408 / 500));
+        }
       },
       methods: {
         downloadSVG() {
