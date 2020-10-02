@@ -8,8 +8,8 @@ jobs:
     - name: Update package list
       run: cabal update
     - name: Install dependencies
-      run: cabal install --only-dependencies --enable-tests
+      run: cabal install --only-dependencies
     - name: Build
       run: |
-        cabal configure --enable-tests
+        cabal configure
         cabal build
