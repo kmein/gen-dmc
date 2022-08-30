@@ -1,7 +1,7 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/canvg/1.4/rgbcolor.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvg/dist/browser/canvg.min.js"></script>
 
@@ -163,7 +163,7 @@
       </section>
 
       <canvas
-        style="display:none"
+        style="display: none"
         :width="downloadWidth"
         :height="downloadHeight"
         id="tmpCanvas"
@@ -182,7 +182,7 @@
         <a class="button" @click="downloadSVG"
           >Download ({{downloadWidth}} &times; {{downloadHeight}})</a
         >
-        <a id="svgDownload" style="display:none"></a>
+        <a id="svgDownload" style="display: none"></a>
       </section>
 
       <footer>
@@ -202,12 +202,12 @@
         frameColour: "#be0a26",
         backgroundColour: "#000000",
         textColour: "#ffffff",
-        downloadWidth: 1500
+        downloadWidth: 1500,
       },
       computed: {
         downloadHeight() {
           return ~~(this.downloadWidth * (408 / 500));
-        }
+        },
       },
       methods: {
         downloadSVG() {
@@ -219,8 +219,8 @@
           downloader.download = `${this.text1}-${this.text2}.jpg`;
           downloader.href = canvas.toDataURL("image/jpeg");
           downloader.click();
-        }
-      }
+        },
+      },
     });
   </script>
 </html>
